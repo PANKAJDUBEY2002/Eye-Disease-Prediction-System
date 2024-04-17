@@ -49,8 +49,12 @@ def upload_eye_image(request):
         # Make predictions using the loaded model
         prediction = model.predict(np.expand_dims(image_array, axis=0))
         predict=np.argmax(prediction)
+        dt=1;
+        
 
         # Prepare the response
+        res=render(request,'EyeDisease/form.html',{'predict':predict , 'dt':1})
+        return res;
         return HttpResponse(predict)
         response_data = {
             'prediction': predict  # Convert prediction to list for JSON serialization
